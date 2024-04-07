@@ -7,6 +7,32 @@ CREATE TABLE public.core_product (
     additional_images JSONB
 );
 
+
+Entendido, para realizar los cambios que deseas en la estructura de tu tabla core_product en PostgreSQL, puedes usar la sentencia ALTER TABLE. Aquí tienes cómo puedes hacerlo:
+
+sql
+Copy code
+-- Cambiar el nombre del campo 'title' a 'product_name'
+ALTER TABLE public.core_product
+RENAME COLUMN title TO product_name;
+
+-- Eliminar los campos 'category', 'featured_image' y 'additional_images'
+ALTER TABLE public.core_product
+DROP COLUMN category,
+DROP COLUMN featured_image,
+DROP COLUMN additional_images;
+
+-- Agregar un nuevo campo llamado 'size'
+ALTER TABLE public.core_product
+ADD COLUMN size VARCHAR(255);
+
+-- Agregar un nuevo campo llamado 'price' de tipo NUMERIC para manejar números con decimales
+ALTER TABLE public.core_product
+ADD COLUMN price NUMERIC;
+
+
+
+
 INSERT INTO public.core_product (title, category, featured_image, description, additional_images) 
 VALUES 
 ('Producto de Ejemplo', 1, 'imagen_destacada.jpg', 'Descripción del producto de ejemplo', '[{"url": "imagen1.jpg", "alt": "Imagen 1"}, {"url": "imagen2.jpg", "alt": "Imagen 2"}]');
